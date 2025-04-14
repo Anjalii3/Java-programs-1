@@ -1,22 +1,46 @@
-# Taking input from the user
-sentence = input("Enter a sentence: ")
+import java.util.Scanner;
 
-# Counting vowels
-vowels = "aeiouAEIOU"
-vowel_count = sum(1 for char in sentence if char in vowels)
+public class SentenceAnalyzer {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-# Counting words
-word_count = len(sentence.split())
+        // Take input
+        System.out.print("Enter a sentence: ");
+        String sentence = scanner.nextLine();
 
-# Displaying outputs
-print("Original String:", sentence)
-print("Length:", len(sentence))
-print("Uppercase:", sentence.upper())
-print("Lowercase:", sentence.lower())
-print("Concatenated String:", sentence + " Java")
-print("Character at index 4:", sentence[4] if len(sentence) > 4 else "Index out of range")
-print("Index of 'o':", sentence.find('o'))
-print("Substring from index 6:", sentence[6:] if len(sentence) > 6 else "")
-print("Replaced String:", sentence.replace("World", "Java"))
-print("Number of vowels:", vowel_count)
-print("Number of words:", word_count)
+        // Count vowels
+        int vowelCount = 0;
+        for (char ch : sentence.toCharArray()) {
+            if ("aeiouAEIOU".indexOf(ch) != -1) {
+                vowelCount++;
+            }
+        }
+
+        // Count words
+        String[] words = sentence.trim().split("\\s+");
+        int wordCount = words.length;
+
+        // Output
+        System.out.println("Original String: " + sentence);
+        System.out.println("Length: " + sentence.length());
+        System.out.println("Uppercase: " + sentence.toUpperCase());
+        System.out.println("Lowercase: " + sentence.toLowerCase());
+        System.out.println("Concatenated String: " + sentence + " Java");
+        if (sentence.length() > 4) {
+            System.out.println("Character at index 4: " + sentence.charAt(4));
+        } else {
+            System.out.println("Character at index 4: Index out of range");
+        }
+        System.out.println("Index of 'o': " + sentence.indexOf('o'));
+        if (sentence.length() > 6) {
+            System.out.println("Substring from index 6: " + sentence.substring(6));
+        } else {
+            System.out.println("Substring from index 6: ");
+        }
+        System.out.println("Replaced String: " + sentence.replace("World", "Java"));
+        System.out.println("Number of vowels: " + vowelCount);
+        System.out.println("Number of words: " + wordCount);
+
+        scanner.close();
+    }
+}
